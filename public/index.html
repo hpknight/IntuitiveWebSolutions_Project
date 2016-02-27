@@ -24,9 +24,10 @@
 		</header>
 
 		<div class="container jumbotron center">
-			<h1>{{app.title}}</h1>
-			<div ng-view></div>
+			<h3>{{app.title}}</h3>
 		</div>
+
+		<div class="container" ng-view></div>
  
 		<script type="text/javascript" src="assets/js/angular.min.js"></script>
 		<script type="text/javascript" src="assets/js/angular-route.min.js"></script>
@@ -34,5 +35,6 @@
 		<script type="text/javascript" src="common/requestApp.js"></script>
 		<script type="text/javascript" src="common/controllers/appCtrl.js"></script>
 		<script type="text/javascript" src="common/controllers/requestCtrl.js"></script>
+		<script type="text/javascript" src="common/APIs/requestAPI.js"></script>
 	</body>
 </html>
