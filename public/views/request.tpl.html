@@ -1,61 +1,63 @@
 <p class="center bold">{{request.title}}</p>
 <form class="form-horizontal" role="form" name="featureRequestForm">
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Title</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" placeholder="Title" ng-model="request.newFeatureRequest.title" required="">
+    <div class="col-sm-12">
+        <div class="col-sm-6 ps50">
+            <div class="form-group">
+                <label class="control-label">Client Priority</label>
+                <div class="">
+                    <input type="number" class="form-control" placeholder="Client Priority" ng-model="request.newFeatureRequest.clientPriority" min="1" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Title</label>
+                <div class="">
+                    <input type="text" class="form-control" placeholder="Title" ng-model="request.newFeatureRequest.title" required="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Target Date</label>
+                <div class="">
+                    <input type="date" class="form-control" placeholder="Target Date" ng-model="request.newFeatureRequest.targetDate" required>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Description</label>
-        <div class="col-sm-4">
-            <textarea class="form-control" placeholder="Description" ng-model="request.newFeatureRequest.description" required=""></textarea>
+        <div class="col-sm-6 ps50">
+            <div class="form-group">
+                <label class="control-label">Client</label>
+                <div class="">
+                    <select class="form-control" ng-model="request.newFeatureRequest.client" required>
+                        <option ng-repeat="client in request.clients" value="{{client}}">{{client.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Product</label>
+                <div class="">
+                    <select class="form-control" ng-model="request.newFeatureRequest.product" required>
+                        <option ng-repeat="product in request.products" value="{{product}}">{{product.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ticket URL</label>
+                <div class="">
+                    <input type="url" class="form-control" placeholder="URL" ng-model="request.newFeatureRequest.ticketURL" required>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Client</label>
-        <div class="col-sm-4">
-            <select class="form-control" ng-model="request.newFeatureRequest.client" required>
-                <option ng-repeat="client in request.clients" value="{{client}}">{{client.name}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Client Priority</label>
-        <div class="col-sm-4">
-            <input type="number" class="form-control" placeholder="Client Priority" ng-model="request.newFeatureRequest.clientPriority" required>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Target Date</label>
-        <div class="col-sm-4">
-            <p class="input-group">
-                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="request.newFeatureRequest.targetDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required />
-                <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-            </p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Ticket URL</label>
-        <div class="col-sm-4">
-            <input type="url" class="form-control" placeholder="URL" ng-model="request.newFeatureRequest.ticketURL" required>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Product</label>
-        <div class="col-sm-4">
-            <select class="form-control" ng-model="request.newFeatureRequest.product" required>
-                <option ng-repeat="product in request.products" value="{{product}}">{{product.name}}</option>
-            </select>
+        <div class="col-sm-12 ps50">
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                <div>
+                    <textarea class="form-control" placeholder="Description" ng-model="request.newFeatureRequest.description" required=""></textarea>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary" ng-click="request.submitRequest()">Submit</button>
+    <div class="col-sm-12">
+        <div>
+            <button type="submit" class="col-sm-6 col-sm-offset-3 btn btn-primary" ng-click="request.submitRequest()" ng-disabled="featureRequestForm.$invalid">Submit</button>
         </div>
     </div>
 </form>
-{{request.newFeatureRequest}}

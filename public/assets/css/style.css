@@ -7,3 +7,24 @@
 .mr0 {
 	margin-right: 0px;
 }
+.ps50 {
+	padding: 0px 50px;
+}
+
+.title {
+	color: #fff;
+	font-weight: bold;
+}
+.jumbotron {
+	background: url(../img/bg-6.png) center center;
+    background-position: 50% 65%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.nav>li>a {
+	text-align: center;
+}

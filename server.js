@@ -42,12 +42,14 @@ apiRoutes.post('/request', function(req, res) {
     };
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
-            return console.log(error);
+            console.log(error);
+            return res.json(error);
+        } else {
+	        console.log('Message sent: ' + info.response);
+	        console.log(info);
+	        return res.json({ success: true, message: 'finally!' });
         }
-        console.log('Message sent: ' + info.response);
-        console.log(info);
     });
-    return res.json({ success: true, message: 'finally!' });
 });
 
 app.use('/api', apiRoutes);
