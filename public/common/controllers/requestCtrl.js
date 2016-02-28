@@ -4,7 +4,7 @@ Main controller to send up the request to the node server
 // TODO: turn this into a service to minimize controller use
 */
 angular.module('requestApp')
-    .controller('requestCtrl', function($scope) {
+    .controller('requestCtrl', function($scope, requestAPI) {
         var vm = this;
 
         vm.title = 'Request Updates';
@@ -39,7 +39,19 @@ angular.module('requestApp')
         vm.newFeatureRequest = {};
 
         vm.submitRequest = function() {
-        	alert('submit request');
+        	// alert('submit request');
+        	requestAPI.create(vm.newFeatureRequest)
+        		.then(function(data) {
+        			console.log(data);
+        			if (data && data.success) {
+        				console.log('request has been successfully submitted');
+        			}
+        			// keep promise chain going
+        			return data;
+        		})
+        		.catch(function(error) {
+        			console.log(error);
+        		});
         };
 
 
