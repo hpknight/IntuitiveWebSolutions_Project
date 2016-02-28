@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
+var nodemailer = require('nodemailer');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,8 +25,29 @@ app.get('*', function(req, res) {
 
 var apiRoutes = express.Router();
 apiRoutes.post('/request', function(req, res) {
-	console.log(req.body);
-	return res.json({success: true, message: 'finally!'});
+    console.log(req.body);
+    var transporter = nodemailer.createTransport({
+        service: 'Yahoo',
+        auth: {
+            user: '', // Your email id
+            pass: '' // Your password
+        }
+    });
+    var mailOptions = {
+        from: '', // sender address
+        to: '', // list of receivers
+        subject: 'New Feature Request', // Subject line
+        text: 'Feature Rquest App', // plaintext body
+        html: '<div><p>'+req.body.title+'<p><p>'+req.body.description+'<p><p>'+req.body.client+'<p><p>'+req.body.clientPriority+'<p><p>'+req.body.targetDate+'<p><p>'+req.body.product+'<p></div>' // html body
+    };
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+        console.log(info);
+    });
+    return res.json({ success: true, message: 'finally!' });
 });
 
 app.use('/api', apiRoutes);
