@@ -4,7 +4,8 @@ Main controller to send up the request to the node server
 // TODO: turn this into a service to minimize controller use
 */
 angular.module('requestApp')
-    .controller('requestCtrl', function($scope, requestAPI) {
+ 	// need to inject client model / product model / request model
+    .controller('requestCtrl', function(requestAPI) {
         var vm = this;
 
         vm.title = 'Request a feature updates to our software!';
@@ -21,6 +22,7 @@ angular.module('requestApp')
             name: 'Client C',
             location: 'Location C'
         }];
+        // TODO: vm.clients = clientModel.data;
 
         vm.products = [{
             id: 1,
@@ -35,10 +37,12 @@ angular.module('requestApp')
             id: 4,
             name: 'Reports',
         }];
+        // TODO: vm.products = productModel.data;
 
         vm.newFeatureRequest = {};
 
         vm.submitRequest = function() {
+        	// TODO: requestModel.create(vm.newFeatureRequest).then(...);
         	requestAPI.create(vm.newFeatureRequest)
         		.then(function(data) {
         			console.log(data);
